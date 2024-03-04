@@ -1,78 +1,78 @@
+import 'package:currency_converter/festures/constant.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class CurrencyConverter extends StatelessWidget {
-  const CurrencyConverter({super.key});
+class CurrencyConverter extends StatefulWidget {
+  CurrencyConverter({super.key});
+
+  @override
+  State<CurrencyConverter> createState() => _CurrencyConverterState();
+}
+
+class _CurrencyConverterState extends State<CurrencyConverter> {
+  List<String> Alist = ['hruiaia', 'kapatea', 'ffffff'];
 
   @override
   Widget build(BuildContext context) {
+    final Oborder = OutlineInputBorder(
+        borderSide: BorderSide(
+            color: Colors.black,
+            width: 2.0,
+            style: BorderStyle.solid,
+            strokeAlign: BorderSide.strokeAlignInside),
+        borderRadius: BorderRadius.all(Radius.circular(40)));
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(children: <Widget>[
-        TextButton(
-            onPressed: () {
-              popup(context, 'fuckyoiu');
-            },
-            child: Text('click')),
-        TextButton(
-            onPressed: () {
-              modal(context);
-            },
-            child: Text('click')),
-        TextButton(
-            onPressed: () {
-              menu(context);
-            },
-            child: Text('click'))
-      ]),
-    );
-  }
-
-  void popup(BuildContext context, title) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text("$title"),
-            content: Text("This is my popup message"),
-            actions: [
-              TextButton(
-                child: Text("OK"),
+        backgroundColor: Colors.grey,
+        appBar: AppBar(
+          actions: [
+            IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Alist.add('hellloo');
+                  setState(() {});
                 },
-              )
-            ],
-          );
-        });
-  }
+                icon: Icon(Icons.plus_one))
+          ],
+        ),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('0', style: Constants.size),
+                TextField(
+                    keyboardType: TextInputType.numberWithOptions(
+                      decimal: true,
+                      signed: true,
+                    ),
+                    // style: TextStyle(color: Colors.black),
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(30),
+                        focusedBorder: Oborder,
+                        enabledBorder: Oborder,
+                        filled: true,
+                        fillColor: Colors.white,
+                        prefixIcon: Icon(Icons.money),
+                        hintText: 'Please enter the amount in SD')),
+                SizedBox(
+                  height: 10,
+                ),
+                TextButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.amber)),
+                    onPressed: () {
+                      //debug , release , profile
+                      // release mode a run duh chuan flutter  run --release
 
-  void modal(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            height: 200,
-            child: Center(
-              child: Text("This is a bottom sheet"),
+                      if (kDebugMode) {
+                        print('hello debug');
+                      }
+                    },
+                    child: Text('click'))
+              ],
             ),
-          );
-        });
+          ),
+        ));
   }
-}
-
-void menu(BuildContext context) async {
-  var selected = await showMenu(
-    context: context,
-    position: RelativeRect.fromLTRB(100, 100, 100, 100),
-    items: [
-      PopupMenuItem<int>(
-        value: 1,
-        child: Text("Item 1"),
-      ),
-      PopupMenuItem<int>(
-        value: 2,
-        child: Text("Item 2"),
-      )
-    ],
-  );
 }

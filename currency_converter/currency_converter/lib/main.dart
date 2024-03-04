@@ -1,4 +1,5 @@
 import 'package:currency_converter/currency_converter.dart';
+import 'package:currency_converter/festures/buttonzir.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +12,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return CurrencyConverter();
+    return ButtonZir();
   }
 }
