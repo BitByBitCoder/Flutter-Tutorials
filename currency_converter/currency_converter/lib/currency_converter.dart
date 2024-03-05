@@ -49,7 +49,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('$usdToInr', style: Constants.size),
+                Text('${usdToInr.toStringAsFixed(2)}', style: Constants.size),
                 TextField(
                   controller: convertController,
                   keyboardType: TextInputType.number,
