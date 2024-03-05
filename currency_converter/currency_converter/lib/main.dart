@@ -12,6 +12,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ButtonZir();
+    return CurrencyConverter();
   }
 }

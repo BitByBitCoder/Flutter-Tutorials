@@ -47,7 +47,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                     ),
                     // style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(30),
+                        contentPadding: EdgeInsets.all(15),
                         focusedBorder: Oborder,
                         enabledBorder: Oborder,
                         filled: true,
@@ -58,9 +58,14 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                   height: 10,
                 ),
                 TextButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(Colors.amber)),
+                    style: const ButtonStyle(
+                      //minSize means you need to take atleast this size
+                      shape: MaterialStatePropertyAll(BeveledRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(33)))),
+                      minimumSize:
+                          MaterialStatePropertyAll(Size(double.infinity, 50)),
+                      backgroundColor: MaterialStatePropertyAll(Colors.amber),
+                    ),
                     onPressed: () {
                       //debug , release , profile
                       // release mode a run duh chuan flutter  run --release
@@ -69,7 +74,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                         print('hello debug');
                       }
                     },
-                    child: Text('click'))
+                    child: Icon(Icons.money))
               ],
             ),
           ),
