@@ -1,6 +1,7 @@
 import 'package:currency_converter/festures/constant.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CurrencyConverter extends StatefulWidget {
   CurrencyConverter({super.key});
@@ -11,6 +12,20 @@ class CurrencyConverter extends StatefulWidget {
 
 class _CurrencyConverterState extends State<CurrencyConverter> {
   List<String> Alist = ['hruiaia', 'kapatea', 'ffffff'];
+  double usdToInr = 0.0;
+  final convertController = TextEditingController();
+  void convert() {
+    if (convertController.text.isNotEmpty) {
+      double price = double.parse(convertController.text.toString());
+      double converting = 82.92 * price;
+      print(price.runtimeType);
+      setState(() {
+        usdToInr = converting;
+      });
+    } else {
+      print('enter something');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +39,9 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
     return Scaffold(
         backgroundColor: Colors.grey,
         appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Alist.add('hellloo');
-                  setState(() {});
-                },
-                icon: Icon(Icons.plus_one))
-          ],
+          leading: Text('kj'),
+          centerTitle: true,
+          title: Text('Currency converter'),
         ),
         body: Center(
           child: Padding(
@@ -39,42 +49,42 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('0', style: Constants.size),
+                Text('$usdToInr', style: Constants.size),
                 TextField(
-                    keyboardType: TextInputType.numberWithOptions(
-                      decimal: true,
-                      signed: true,
-                    ),
-                    // style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(15),
-                        focusedBorder: Oborder,
-                        enabledBorder: Oborder,
-                        filled: true,
-                        fillColor: Colors.white,
-                        prefixIcon: Icon(Icons.money),
-                        hintText: 'Please enter the amount in SD')),
-                SizedBox(
+                  controller: convertController,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  // style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(15),
+                      focusedBorder: Oborder,
+                      enabledBorder: Oborder,
+                      filled: true,
+                      fillColor: Colors.white,
+                      prefixIcon: Icon(Icons.money),
+                      hintText: 'Please enter the amount in SD'),
+                ),
+                const SizedBox(
                   height: 10,
                 ),
                 TextButton(
-                    style: const ButtonStyle(
-                      //minSize means you need to take atleast this size
-                      shape: MaterialStatePropertyAll(BeveledRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(33)))),
-                      minimumSize:
-                          MaterialStatePropertyAll(Size(double.infinity, 50)),
-                      backgroundColor: MaterialStatePropertyAll(Colors.amber),
-                    ),
+                    style: TextButton.styleFrom(
+                        //minSize means you need to take atleast this size
+                        backgroundColor: Colors.black,
+                        minimumSize: Size(double.infinity, 50),
+                        elevation: 10.0,
+                        shadowColor: Colors.black),
                     onPressed: () {
                       //debug , release , profile
                       // release mode a run duh chuan flutter  run --release
-
-                      if (kDebugMode) {
-                        print('hello debug');
-                      }
+                      convert();
                     },
-                    child: Icon(Icons.money))
+                    child: const Icon(
+                      Icons.money,
+                      color: Colors.white,
+                    ))
               ],
             ),
           ),
