@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:weather_app/additional_info_item.dart';
+import 'package:weather_app/hourly_focus_item.dart';
 
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
@@ -42,7 +44,7 @@ class WeatherScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            '300.67°C',
+                            '300K',
                             style: TextStyle(
                                 fontSize: 32, fontWeight: FontWeight.bold),
                           ),
@@ -68,67 +70,82 @@ class WeatherScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
-            const Text('Weather Forecast'),
+            const Text(
+              'Weather Forecast',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
             SizedBox(
-              height: 100,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
+              height: 8,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
                 children: [
-                  ttt(),
-                  ttt(),
-                  ttt(),
-                  ttt(),
-                  ttt(),
-                  ttt(),
-                  ttt(),
-                  ttt(),
-                  ttt(),
-                  ttt(),
-                  ttt(),
-                  ttt(),
-                  ttt(),
-                  ttt(),
+                  HourlyForecast(
+                    icon: Icons.cloud,
+                    temperature: '301.22',
+                    time: '00.00',
+                  ),
+                  HourlyForecast(
+                    time: '03:00',
+                    icon: Icons.sunny,
+                    temperature: '300.22',
+                  ),
+                  HourlyForecast(
+                    time: '06.00',
+                    icon: Icons.cloud,
+                    temperature: '303.33',
+                  ),
+                  HourlyForecast(
+                    time: '09.00',
+                    icon: Icons.sunny,
+                    temperature: '302',
+                  ),
+                  HourlyForecast(
+                    time: '12.00',
+                    icon: Icons.cloud,
+                    temperature: '302',
+                  ),
                 ],
               ),
             ),
-            Container(
-              height: 100,
-              width: 100,
-              child: const Placeholder(),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Additional Information',
+              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                AdditionalInfoItem(
+                  value: '98',
+                  label: 'Humidity  ',
+                  icon: Icons.water_drop_sharp,
+                ),
+                AdditionalInfoItem(
+                  value: '7.67',
+                  label: 'Wind Speed ',
+                  icon: Icons.air,
+                ),
+                AdditionalInfoItem(
+                  value: '1006',
+                  label: 'Pressure  ',
+                  icon: Icons.beach_access,
+                ),
+                // AdditionalInfoItem(),
+                // AdditionalInfoItem(),
+              ],
             )
           ],
         ),
       ),
     );
-  }
-
-  Container ttt() {
-    return Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        height: 100,
-        width: 100,
-        color: Colors.black,
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              '300.67F',
-              style: TextStyle(fontSize: 10),
-            ),
-            Icon(
-              Icons.cloud,
-              size: 10,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              'Rain',
-              style: TextStyle(fontSize: 10, color: Colors.white),
-            ),
-          ],
-        ));
   }
 }
