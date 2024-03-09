@@ -1,5 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'dart:convert' as convert;
+
+import 'package:http/http.dart' as http;
 
 class HourlyForecast extends StatelessWidget {
   final String time;
@@ -11,6 +14,10 @@ class HourlyForecast extends StatelessWidget {
     required this.temperature,
     required this.icon,
   }) : super(key: key);
+
+  void fetch() {
+    final response = http.get(Uri.parse(''));
+  }
 
   @override
   Widget build(BuildContext context) {

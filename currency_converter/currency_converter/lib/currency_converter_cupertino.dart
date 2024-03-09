@@ -31,6 +31,13 @@ class _CurrencyConverterCupertinoState
   }
 
   @override
+  void dispose() {
+    convertController.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
         backgroundColor: CupertinoColors.systemGrey,
